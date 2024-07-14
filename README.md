@@ -40,3 +40,12 @@ A well-designed digital solution would not only facilitate the sharing of litera
   Create interactive pages and components for the functionalities of registration, book management, book search, and book exchange;
   Connect the frontend to the API developed in the previous phase, ensuring that all operations are executed correctly.</p>
 </ul>
+
+<h1>Documentation</h1>
+
+<h3>For more information, visit the official documentation</h3>
+
+- [Official documentation](https://seed-rodent-dfa.notion.site/Modelagem-L-gica-Val-rio-e68fd276ed454242a9a61d75b1b0839f)
+
+
+
