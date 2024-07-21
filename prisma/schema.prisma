@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model books {
+  book_id           Int        @id @default(autoincrement())
+  user_id           Int
+  title             String     @db.VarChar(70)
+  category          String?    @db.VarChar(40)
+  author            String?    @db.VarChar(40)
+  publisher         String?    @db.VarChar(50)
+  publication_year  Int?
+  description       String?    @db.VarChar(300)
+  cover_image       String?    @db.VarChar(50)
+  available_now     String?    @db.VarChar(3)
+  registration_date DateTime?  @db.Timestamp(6)
+  users             users      @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  requests          requests[]
+}
+
+model ratings {
+  rating_id     Int       @id @default(autoincrement())
+  user_id       Int
+  request_id    Int
+  creation_date DateTime? @db.Date
+  comment       String?
+  stars         String?   @db.VarChar(11)
+  requests      requests  @relation(fields: [request_id], references: [request_id], onDelete: NoAction, onUpdate: NoAction)
+  users         users     @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model request_history {
+  status_id                                     Int        @id @default(autoincrement())
+  request_id                                    Int
+  previous_status                               String?    @db.VarChar(40)
+  current_status                                String?    @db.VarChar(40)
+  change_date                                   DateTime?  @db.Timestamp(6)
+  requests_request_history_request_idTorequests requests   @relation("request_history_request_idTorequests", fields: [request_id], references: [request_id], onDelete: NoAction, onUpdate: NoAction)
+  requests_requests_status_idTorequest_history  requests[] @relation("requests_status_idTorequest_history")
+}
+
+model requests {
+  request_id                                           Int               @id @default(autoincrement())
+  books_id                                             Int
+  user_id                                              Int
+  status_id                                            Int
+  request_number                                       String?           @db.VarChar(40)
+  delivery_zip                                         String?           @db.VarChar(10)
+  delivery_address                                     String?           @db.VarChar(50)
+  delivery_number                                      Int?
+  delivery_neighborhood                                String?           @db.VarChar(30)
+  delivery_city                                        String?           @db.VarChar(30)
+  delivery_state                                       String?           @db.VarChar(2)
+  request_date                                         DateTime?         @db.Timestamp(6)
+  offered_book_id                                      Int?
+  requested_book_id                                    Int?
+  ratings                                              ratings[]
+  request_history_request_history_request_idTorequests request_history[] @relation("request_history_request_idTorequests")
+  books                                                books             @relation(fields: [books_id], references: [book_id], onDelete: NoAction, onUpdate: NoAction)
+  request_history_requests_status_idTorequest_history  request_history   @relation("requests_status_idTorequest_history", fields: [status_id], references: [status_id], onDelete: NoAction, onUpdate: NoAction)
+  users                                                users             @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model users {
+  user_id           Int        @id @default(autoincrement())
+  email             String     @unique @db.VarChar(100)
+  password          String     @db.VarChar(30)
+  name              String     @db.VarChar(40)
+  zip_code          String?    @db.VarChar(10)
+  address           String?    @db.VarChar(50)
+  number            Int?
+  neighborhood      String?    @db.VarChar(30)
+  city              String?    @db.VarChar(30)
+  state             String?    @db.VarChar(2)
+  birth_date        DateTime?  @db.Timestamp(6)
+  registration_date DateTime?  @db.Timestamp(6)
+  positive_ratings  Int?       @default(0)
+  negative_ratings  Int?       @default(0)
+  blocked           Boolean?   @default(false)
+  admin             Boolean?   @default(false)
+  books             books[]
+  ratings           ratings[]
+  requests          requests[]
+}
