@@ -35,20 +35,18 @@ model ratings {
 }
 
 model request_history {
-  status_id                                     Int        @id @default(autoincrement())
+  status_id                                     Int       @id @default(autoincrement())
   request_id                                    Int
-  previous_status                               String?    @db.VarChar(40)
-  current_status                                String?    @db.VarChar(40)
-  change_date                                   DateTime?  @db.Timestamp(6)
-  requests_request_history_request_idTorequests requests   @relation("request_history_request_idTorequests", fields: [request_id], references: [request_id], onDelete: NoAction, onUpdate: NoAction)
-  requests_requests_status_idTorequest_history  requests[] @relation("requests_status_idTorequest_history")
+  previous_status                               String?   @db.VarChar(40)
+  current_status                                String?   @db.VarChar(40)
+  change_date                                   DateTime? @db.Timestamp(6)
+  requests_request_history_request_idTorequests requests  @relation("request_history_request_idTorequests", fields: [request_id], references: [request_id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model requests {
   request_id                                           Int               @id @default(autoincrement())
   books_id                                             Int
   user_id                                              Int
-  status_id                                            Int
   request_number                                       String?           @db.VarChar(40)
   delivery_zip                                         String?           @db.VarChar(10)
   delivery_address                                     String?           @db.VarChar(50)
@@ -62,7 +60,6 @@ model requests {
   ratings                                              ratings[]
   request_history_request_history_request_idTorequests request_history[] @relation("request_history_request_idTorequests")
   books                                                books             @relation(fields: [books_id], references: [book_id], onDelete: NoAction, onUpdate: NoAction)
-  request_history_requests_status_idTorequest_history  request_history   @relation("requests_status_idTorequest_history", fields: [status_id], references: [status_id], onDelete: NoAction, onUpdate: NoAction)
   users                                                users             @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
 }
 

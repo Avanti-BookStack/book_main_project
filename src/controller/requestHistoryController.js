@@ -1,6 +1,5 @@
 import prisma from '../database/prismaClient.js';
 
-// POST para criar um registro na tabela request_history
 export const createRequestHistory = async (req, res) => {
   const {
     request_id,
@@ -9,19 +8,27 @@ export const createRequestHistory = async (req, res) => {
     change_date
   } = req.body;
 
+  // Validação para garantir que request_id existe
+  const requestExists = await prisma.requests.findUnique({
+    where: { request_id }
+  });
+
+  if (!requestExists) {
+    return res.status(404).json({ 'error': 'Request not found' });
+  }
+
   try {
-    // Criar novo status inicial
     const newRequestHistory = await prisma.request_history.create({
       data: {
         request_id,
         previous_status,
         current_status,
-        change_date: new Date(change_date),
+        change_date
       },
     });
-
     res.status(201).json(newRequestHistory);
   } catch (error) {
-    res.status(400).json({ 'error': error.message });
+    res.status(404).json({ 'error': error.message });
   }
 };
+

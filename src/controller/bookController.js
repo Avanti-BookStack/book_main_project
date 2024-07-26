@@ -29,7 +29,7 @@ export const createBook = async (req, res) => {
   });
 
   if (!userExists) {
-    return res.status(400).json({ 'error': 'User does not exist' });
+    return res.status(404).json({ 'error': 'User does not exist' });
   }
 
   try {
@@ -49,6 +49,6 @@ export const createBook = async (req, res) => {
     });
     res.status(201).json(newBook);
   } catch (error) {
-    res.status(400).json({ 'error': error.message });
+    res.status(404).json({ 'error': error.message });
   }
 };
