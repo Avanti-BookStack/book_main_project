@@ -1,5 +1,9 @@
 import prisma from '../database/prismaClient.js';
+import bcrypt from 'bcrypt';
 
+const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS, 10);
+
+// Função para criar um novo usuário com senha hash
 export const createUser = async (req, res) => {
   const {
     email,
@@ -20,10 +24,11 @@ export const createUser = async (req, res) => {
   } = req.body;
 
   try {
+    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
     const newUser = await prisma.users.create({
       data: {
         email,
-        password,
+        password: hashedPassword,
         name,
         zip_code,
         address,
@@ -39,8 +44,12 @@ export const createUser = async (req, res) => {
         admin
       },
     });
-    res.status(201).json(newUser);
+
+    // Excluir o campo password do objeto retornado
+    const { password: _, ...userWithoutPassword } = newUser;
+
+    res.status(201).json(userWithoutPassword);
   } catch (error) {
-    res.status(404).json({ 'error': error.message });
+    res.status(400).json({ 'error': error.message });
   }
 };

@@ -66,7 +66,7 @@ model requests {
 model users {
   user_id           Int        @id @default(autoincrement())
   email             String     @unique @db.VarChar(100)
-  password          String     @db.VarChar(30)
+  password          String     @db.VarChar(128)
   name              String     @db.VarChar(40)
   zip_code          String?    @db.VarChar(10)
   address           String?    @db.VarChar(50)
