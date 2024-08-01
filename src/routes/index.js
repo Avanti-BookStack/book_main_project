@@ -13,6 +13,9 @@ router.post('/books', createBook);
 
 // Rotas para users
 router.post('/users', createUser);
+router.put('/usuarios/:id', userController.putUser);
+router.delete('/usuarios/:id', userController.deleteUser );
+
 
 // Rotas para requests
 router.post('/requests', createRequest);
