@@ -23,6 +23,11 @@ router.post('/books', validateUserId, createBook);
 // Rotas para ratings
 router.post('/ratings', validateUserId, createRating);
 
+// Rotas para users
+router.post('/users', createUser);
+router.put('/usuarios/:id', userController.putUser);
+router.delete('/usuarios/:id', userController.deleteUser );
+
 // Rotas para requests
 router.post('/requests', validateUserId, createRequest);
 
