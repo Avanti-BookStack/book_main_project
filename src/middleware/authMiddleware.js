@@ -16,12 +16,15 @@ export const authenticateToken = (req, res, next) => {
 };
 
 export const validateUserId = (req, res, next) => {
-  const { user_id } = req.body;
+  const userIdFromToken = req.user.userId;
+  const userIdFromRequest = req.params.user_id || req.body.user_id;
 
-  // Verificação do token para garantir que o user_id do token corresponde ao user_id da requisição
-  if (req.user.userId !== user_id) {
+// Verificação do token para garantir que o user_id do token corresponde ao user_id da requisição
+  if (userIdFromToken !== parseInt(userIdFromRequest)) {
     return res.status(403).json({ 'error': 'User ID does not match the authenticated user' });
   }
 
   next();
 };
+
+ 

@@ -54,49 +54,79 @@ export const createUser = async (req, res) => {
   }
 };
 
-//Atualiza os usuários cadastrados no banco de dados//
-const putUser = async (req, res) => {
-  const { email, password, name, zip_code, address, number, neighborhood, city, state, birth_date, registration_date, positive_ratings, negative_ratings, admin } = req.body;
-  const { id } = req.params;
+// Função para atualizar um usuário
+export const putUser = async (req, res) => {
+  const {
+    email,
+    password,
+    name,
+    zip_code,
+    address,
+    number,
+    neighborhood,
+    city,
+    state,
+    birth_date,
+    registration_date,
+    positive_ratings,
+    negative_ratings,
+    admin
+  } = req.body;
+  const { user_id } = req.params;
 
   try {
-      const existingUser = await prisma.users.findUnique({ where: { email } });
+    const existingUser = await prisma.users.findUnique({ where: { email } });
 
-      if (existingUser && existingUser.user_id !== parseInt(id)) {
-          return res.status(400).json({ error: 'Email já está em uso por outro usuário' });
+    if (existingUser && existingUser.user_id !== parseInt(user_id)) {
+      return res.status(400).json({ error: 'Email is already in use by another user' });
+    }
+
+    let hashedPassword;
+    if (password) {
+      hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+    }
+
+    const updatedUser = await prisma.users.update({
+      where: { user_id: parseInt(user_id) },
+      data: {
+        email,
+        password: hashedPassword || existingUser.password,
+        name,
+        zip_code,
+        address,
+        number,
+        neighborhood,
+        city,
+        state,
+        birth_date,
+        registration_date,
+        positive_ratings,
+        negative_ratings,
+        admin
       }
+    });
 
-      const usuarioDataBase = await prisma.users.update({
-          where: { user_id: parseInt(id) },
-          data: {
-              email, password, name, zip_code, address, number, neighborhood, city, state, birth_date, registration_date, positive_ratings, negative_ratings, admin
-          }
-      });
+    // Excluir o campo password do objeto retornado
+    const { password: _, ...userWithoutPassword } = updatedUser;
 
-      res.status(200).json(usuarioDataBase);
+    res.status(200).json(userWithoutPassword);
   } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Erro ao atualizar usuário' });
+    console.error(error);
+    res.status(500).json({ error: 'Error updating user' });
   }
-}
+};
 
-//Deleta os usuários cadastrados no banco de dados//
-const deleteUser = async (req, res) => {
-  const { id } = req.params;
+// Função para deletar um usuário
+export const deleteUser = async (req, res) => {
+  const { user_id } = req.params;
 
   try {
-      const usuarioDataBase = await prisma.users.delete({
-          where: { user_id: parseInt(id) }
-      });
-      res.status(204).send();
+    await prisma.users.delete({
+      where: { user_id: parseInt(user_id) }
+    });
+    res.status(204).send();
   } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Erro ao deletar usuário' });
+    console.error(error);
+    res.status(500).json({ error: 'Error deleting user' });
   }
-}
-
-
-module.exports = {
-  putUser,
-  deleteUser
-}
+};
