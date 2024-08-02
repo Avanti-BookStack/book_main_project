@@ -3,6 +3,17 @@ import bcrypt from 'bcrypt';
 
 const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS, 10);
 
+//Função para listar os usuários cadastrados no sistema
+export const getUsers = async (req, res) => {
+  try {
+      const usuariosDataBase = await prisma.users.findMany();
+      res.status(200).json(usuariosDataBase);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erro ao buscar usuários' });
+  }
+}
+
 // Função para criar um novo usuário com senha hash
 export const createUser = async (req, res) => {
   const {
@@ -120,13 +131,21 @@ export const putUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
   const { user_id } = req.params;
 
+  if (!req.user) {
+    return res.status(401).json({ error: 'Ação não autorizado. É necessário realizar login para continuar' });
+  }
+
   try {
+    if (req.user.user_id !== parseInt(user_id)) {
+      return res.status(403).json({ error: 'Ação não autorizada. Você não tem permissão para excluir um outro usuário.' });
+    }
+
     await prisma.users.delete({
       where: { user_id: parseInt(user_id) }
     });
     res.status(204).send();
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Error deleting user' });
+    res.status(500).json({ error: 'Erro ao excluir usuário' });
   }
 };

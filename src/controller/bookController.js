@@ -52,3 +52,43 @@ export const createBook = async (req, res) => {
     res.status(404).json({ 'error': error.message });
   }
 };
+
+export const putBooks = async (req, res) => {
+  const { title, category, author, publisher, publication_year, description, cover_image, available_now, registration_date } = req.body;
+  const { id } = req.params;
+
+  try {
+      const bookDataBase = await prisma.books.update({
+          where: { book_id: parseInt(id) },
+          data: {
+              title,
+              category,
+              author,
+              publisher,
+              publication_year,
+              description,
+              cover_image,
+              available_now,
+              registration_date
+          }
+      });
+
+      res.status(200).json(bookDataBase);
+  } catch (error) {
+      res.status(404).json({ 'error': error.message });
+  }
+};
+
+export const deleteBooks = async (req, res) => {
+const { id } = req.params;
+
+try {
+    const bookDataBase = await prisma.books.delete({
+        where: { book_id: parseInt(id) }
+    });
+    res.status(204).send("Livro deletado com Sucesso!");
+} catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao deletar Livro.' });
+}
+}
