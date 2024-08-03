@@ -19,14 +19,14 @@ router.use(authenticateToken);
 // Rotas para books
 router.get('/books', getAllBooks);
 router.post('/books', validateUserId, createBook);
-router.put('/livros/:id', putBooks);//Atualiza o livro de acordo com o ID
-router.delete('/livros/:id', deleteBooks);//Deleta o livro de acordo com o ID
+router.put('/books/:id', putBooks);//Atualiza o livro de acordo com o ID
+router.delete('/books/:id', deleteBooks);//Deleta o livro de acordo com o ID
 
 // Rotas para ratings
 router.post('/ratings', validateUserId, createRating);
 
 // Rotas para users
-router.get('/usuarios', getUsers); //Lista os usuários cadastrados no banco de dados//
+router.get('/users', getUsers); //Lista os usuários cadastrados no banco de dados//
 router.put('/users/:user_id', validateUserId, putUser);
 router.delete('/users/:user_id', validateUserId, deleteUser);
 
