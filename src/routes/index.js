@@ -1,6 +1,7 @@
 import express from 'express';
-import { getAllBooks, createBook, putBooks, deleteBooks } from '../controller/bookController.js';
+import { getAllBooks, createBook, putBooks, deleteBooks, getBooksByTitle } from '../controller/bookController.js';
 import { createRating } from '../controller/ratingController.js';
+import { getAllRequests, updateRequest } from '../controller/requestController.js';
 import { createRequest } from '../controller/requestController.js';
 import { createRequestHistory } from '../controller/requestHistoryController.js';
 import { createUser, putUser, deleteUser } from '../controller/userController.js';
@@ -18,6 +19,7 @@ router.use(authenticateToken);
 
 // Rotas para books
 router.get('/books', getAllBooks);
+router.get('/books/:title', getBooksByTitle) //Essa rota faz um get dos livros pelo titulo dele. Não passamos o parametro em formato de String: "jajajajaja"
 router.post('/books', validateUserId, createBook);
 router.put('/books/:id', putBooks);//Atualiza o livro de acordo com o ID
 router.delete('/books/:id', deleteBooks);//Deleta o livro de acordo com o ID
@@ -32,6 +34,8 @@ router.delete('/users/:user_id', validateUserId, deleteUser);
 
 // Rotas para requests
 router.post('/requests', validateUserId, createRequest);
+router.get('/request', getAllRequests)
+router.put('/request/:id', updateRequest)
 
 // Rotas para request history
 router.post('/request-history', createRequestHistory);

@@ -90,5 +90,25 @@ try {
 } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Erro ao deletar Livro.' });
+  }
 }
-}
+
+//Filtrar Livros por Titulo - Passar o titulo como parametro, mas sem ser em formato de String
+export const getBooksByTitle = async (req, res) => {
+  const { title } = req.params;
+
+  try {
+    const books = await prisma.books.findMany({
+      where: {
+        title: {
+          contains: title,
+          mode: 'insensitive'
+        }
+      }
+    });
+
+    res.status(200).json(books);
+  } catch (error) {
+    res.status(404).json({ 'error': error.message });
+  }
+};

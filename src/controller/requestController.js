@@ -64,3 +64,64 @@ export const createRequest = async (req, res) => {
     res.status(404).json({ 'error': error.message });
   }
 };
+
+export const getAllRequests = async (req, res) => { /*Retorna todos os Request criados. 
+  Além disso, pelo que vi, retorna user e book que está relacionada com request*/
+  try {
+    const requests = await prisma.requests.findMany({
+      include: {
+        books: true,
+        users: true,
+        request_history: true,
+      },
+    });
+    res.status(200).json(requests);
+  } catch (error) {
+    res.status(400).json({ 'error': error.message });
+  }
+};
+
+
+export const updateRequest = async (req, res) => {
+  const { id } = req.params;
+  const {
+    books_id,
+    user_id,
+    status_id,
+    request_number,
+    delivery_zip,
+    delivery_address,
+    delivery_number,
+    delivery_neighborhood,
+    delivery_city,
+    delivery_state,
+    request_date,
+    offered_book_id,
+    requested_book_id
+  } = req.body;
+
+  try {
+    const updatedRequest = await prisma.requests.update({
+      where: { request_id: parseInt(id) },
+      data: {
+        books_id,
+        user_id,
+        status_id,
+        request_number,
+        delivery_zip,
+        delivery_address,
+        delivery_number,
+        delivery_neighborhood,
+        delivery_city,
+        delivery_state,
+        request_date,
+        offered_book_id,
+        requested_book_id
+      }
+    });
+
+    res.status(200).json(updatedRequest);
+  } catch (error) {
+    res.status(404).json({ 'error': error.message });
+  }
+};

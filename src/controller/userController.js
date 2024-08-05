@@ -129,15 +129,27 @@ export const putUser = async (req, res) => {
 
 // Função para deletar um usuário
 export const deleteUser = async (req, res) => {
-  const { user_id } = req.params;
+  const { user_id, password } = req.body;
 
   if (!req.user) {
-    return res.status(401).json({ error: 'Ação não autorizado. É necessário realizar login para continuar' });
+    return res.status(401).json({ error: 'Ação não autorizada. É necessário realizar login para continuar.' });
   }
 
   try {
     if (req.user.user_id !== parseInt(user_id)) {
       return res.status(403).json({ error: 'Ação não autorizada. Você não tem permissão para excluir um outro usuário.' });
+    }
+
+    const user = await prisma.users.findUnique({ where: { user_id: parseInt(user_id) } });
+
+    if (!user) {
+      return res.status(404).json({ error: 'Usuário não encontrado.' });
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: 'A senha é inválida.' });
     }
 
     await prisma.users.delete({
@@ -146,6 +158,6 @@ export const deleteUser = async (req, res) => {
     res.status(204).send();
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Erro ao excluir usuário' });
+    res.status(500).json({ error: 'Erro ao excluir usuário.' });
   }
 };
