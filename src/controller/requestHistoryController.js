@@ -32,3 +32,11 @@ export const createRequestHistory = async (req, res) => {
   }
 };
 
+export const getHistoryRequest = async (req, res) => {
+  try {
+    const requestHistory = await prisma.request_history.findMany()
+    res.status(201).json(requestHistory)
+  }catch(error){
+    res.status(404).json({ error: error.message })
+  }
+}

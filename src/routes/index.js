@@ -3,8 +3,8 @@ import { getAllBooks, createBook, putBooks, deleteBooks, getBooksByTitle } from 
 import { createRating } from '../controller/ratingController.js';
 import { getAllRequests, updateRequest } from '../controller/requestController.js';
 import { createRequest } from '../controller/requestController.js';
-import { createRequestHistory } from '../controller/requestHistoryController.js';
-import { createUser, putUser, deleteUser } from '../controller/userController.js';
+import { createRequestHistory, getHistoryRequest } from '../controller/requestHistoryController.js';
+import { createUser, putUser, deleteUser, getUsers } from '../controller/userController.js';
 import { login } from '../middleware/authAuthentication.js';
 import { authenticateToken, validateUserId } from '../middleware/authMiddleware.js';
 
@@ -39,5 +39,6 @@ router.put('/request/:id', updateRequest)
 
 // Rotas para request history
 router.post('/request-history', createRequestHistory);
+router.get('/request-history', getHistoryRequest);
 
 export default router;

@@ -70,11 +70,11 @@ export const getAllRequests = async (req, res) => { /*Retorna todos os Request c
   try {
     const requests = await prisma.requests.findMany({
       include: {
-        books: true,
         users: true,
-        request_history: true,
-      },
-    });
+        books: true,
+        request_history_request_history_request_idTorequests: true,
+      }
+    })
     res.status(200).json(requests);
   } catch (error) {
     res.status(400).json({ 'error': error.message });
