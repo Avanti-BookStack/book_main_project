@@ -1,13 +1,19 @@
-import Header from './components/Header';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import './components/Header/Header.module.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Login from './pages/Login/Login';
+import Cadastro from './pages/Register/Register';
 
 const App = () => {
   return (
-    <div>
-      <Header />
-      <Home />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}/>
+        <Route path="/login" element={<Login />}/>
+        <Route path="/cadastre-se" element={<Cadastro/>}/>
+      </Routes>
+      
+    </BrowserRouter>
   );
 };
 

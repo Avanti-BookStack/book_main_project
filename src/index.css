@@ -6,6 +6,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  background-color: #f8f9fa;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;

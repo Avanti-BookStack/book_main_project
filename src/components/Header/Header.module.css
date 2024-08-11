@@ -14,8 +14,10 @@
   align-items: center;
 }
 
-.leftSection {
-  margin-left: 1.25rem; /* 20px */
+.section {
+  /* margin-left: 1.25rem; 20px */
+  display: flex;
+  padding: 0 1.25rem;
 }
 
 .logo {

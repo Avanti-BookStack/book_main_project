@@ -1,0 +1,40 @@
+.main {
+  width: 80%;
+  height: auto;
+  padding: 0 2rem;
+  margin: 0 auto;
+  display: flex; 
+}
+
+.titulo-cadastro {
+  width: 80%;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+.container-form {
+  width: 50%;
+  padding: 1rem ;
+  background-color: #007bff;
+  color: #f8f9fa;
+  border-radius: 1rem 0 0 1rem;
+}
+
+.container-image {
+  width: 50%;
+  padding: 1rem 1.5rem;
+  background-image: url("../../assets/estante-livros.webp");
+  background-size: cover;
+  background-position: center;
+  border-radius: 0 1rem 1rem 0;
+}
+
+.container-input {
+  display: flex; 
+  justify-content: space-around;
+  width: 100%;
+}
+
+.separador {
+  width: 5%;
+}
