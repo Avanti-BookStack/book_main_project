@@ -19,24 +19,24 @@ const Cadastro = () => {
   return (
     <>
       <Header />
-      <div className="titulo-cadastro" >
+      <div className="titulo-cadastro-register" >
         <Title level={1}>Cadastre-se</Title>
       </div>
-      <section className="main">
-        <div className="container-form">
+      <section className="main-register">
+        <div className="container-form-register">
           <form>
             <TextInput inputValue={email} setInputValue={setEmail} label={"Email:"} htmlFor="email" type="email"/>
             <TextInput inputValue={password} setInputValue={setPassword} label={"Senha:"} htmlFor="password" type="password"/>
             <TextInput inputValue={nome} setInputValue={setNome} label={"Nome:"} htmlFor="nome" type="text"/>
             <TextInput inputValue={endereco} setInputValue={setEndereco} label={"Endereço:"} htmlFor="endereco" type="text"/>
-            <div className="container-input">
+            <div className="container-input-register">
               <TextInput inputValue={numero} setInputValue={setNumero} label={"Número:"} htmlFor="numero" type="number"/>
               <div className="separador"/>
               <TextInput inputValue={cep} setInputValue={setCep} label={"CEP:"} htmlFor="cep" type="text"/>
             </div>
             <TextInput inputValue={bairro} setInputValue={setBairro} label={"Bairro:"} htmlFor="bairro" type="text"/>
 
-            <div className="container-input">
+            <div className="container-input-register">
               <TextInput inputValue={cidade} setInputValue={setCidade} label={"Cidade:"} htmlFor="cidade" type="text"/>
               <div className="separador"/>
               <TextInput inputValue={estado} setInputValue={setEstado} label={"Estado:"} htmlFor="estado" type="text"/>
@@ -44,7 +44,7 @@ const Cadastro = () => {
             <TextInput inputValue={nascimento} setInputValue={setNascimento} label={"Data de nascimento:"} htmlFor="nascimento" type="date"/>
           </form>
         </div>
-        <div className="container-image">
+        <div className="container-image-register">
         </div>
       </section>
     </>

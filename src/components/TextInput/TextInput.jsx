@@ -33,10 +33,5 @@ TextInput.propTypes = {
   required: PropTypes.bool,
   htmlFor: PropTypes.string
 };
-// Define valores padrões as propriedades
-TextInput.defaultProps = {
-  type: 'text',
-  required: false,
-};
 
 export default TextInput;

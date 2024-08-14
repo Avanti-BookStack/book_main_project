@@ -1,0 +1,20 @@
+.main-login {
+  width: 30rem;
+  margin: 0 auto;
+  padding: 1rem 0;
+  color: #007bff;
+}
+
+.container-titulo-login {
+  text-align: center;
+  width: auto;
+}
+
+.form-login {
+  width: auto;
+  color: #373737;
+}
+
+.error {
+  color: rgb(255, 29, 29);
+}
