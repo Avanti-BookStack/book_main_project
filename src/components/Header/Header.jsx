@@ -10,10 +10,18 @@ const Header = () => {
         <div className={styles.section}>
           <img src={NewLogo} alt="New Logo" className={styles.logo} />
           <ul className={styles.navList}>
-            <li className={`${styles.navItem} ${styles.navItemCenter}`}><Link to="#">Como Funciona</Link></li>
-            <li className={`${styles.navItem} ${styles.navItemCenter}`}><Link to='/buscar-livros'>Livros</Link></li>
-            <li className={`${styles.navItem} ${styles.navItemCenter}`}><Link to='#'>Informações</Link></li>
-            <li className={`${styles.navItem} ${styles.navItemCenter}`}><Link to='#'><CiSearch size="20"/></Link></li>
+            <li className={`${styles.navItem} ${styles.navItemCenter}`}>
+              <Link to="/">Como Funciona</Link> {/* Redireciona para a página inicial */}
+            </li>
+            <li className={`${styles.navItem} ${styles.navItemCenter}`}>
+              <Link to="/buscar-livros">Livros</Link> {/* Link correto para Livros */}
+            </li>
+            <li className={`${styles.navItem} ${styles.navItemCenter}`}>
+              <Link to="/informacoes">Informações</Link> {/* Este link deve apontar para a rota correta */}
+            </li>
+            <li className={`${styles.navItem} ${styles.navItemCenter}`}>
+              <Link to="/buscar-livros"><CiSearch size="20" /></Link> {/* Link para buscar livros */}
+            </li>
           </ul>
         </div>
         <div>
@@ -23,15 +31,9 @@ const Header = () => {
             <li className={styles.navItem}><Link to="/login">Entrar</Link></li>
           </ul>
         </div>
-        
       </nav>
     </header>
   );
 };
 
 export default Header;
-
-
-
-
-
