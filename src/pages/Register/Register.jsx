@@ -3,18 +3,46 @@ import Header from "../../components/Header/Header";
 import TextInput from "../../components/TextInput/TextInput";
 import Title from "../../components/Title/Title";
 import './Register.css'
+import { registerUser } from "../../services/userApi";
+import Button from "../../components/Button/Button";
+import getCurrentDataAndTime from "../../utils/dateUtil";
+import { useNavigate } from "react-router-dom";
 
 const Cadastro = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [nome, setNome] = useState("")
-  const [endereco, setEndereco] = useState("")
-  const [numero, setNumero] = useState("")
-  const [cep, setCep] = useState("")
-  const [bairro, setBairro] = useState("")
-  const [cidade, setCidade] = useState("")
-  const [estado, setEstado] = useState("")
-  const [nascimento, setNascimento] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [adress, setAdress] = useState("");
+  const [number, setNumber] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [neighborhood, setNeighborhood] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const registrationDate = new Date().getFullYear();
+  const positiveRatings = 0;
+  const negativeRatings = 0;
+  const blocked = false;
+  const [admin, setAdmin] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) =>{
+    e.preventDefault();
+    setError("");
+    setAdmin(false);
+    const birthDateFormated = getCurrentDataAndTime(birthDate);
+    const registrationDateFormated = getCurrentDataAndTime(registrationDate);
+
+    try {
+      const response = await registerUser(email, password, name, zipCode, adress, number, neighborhood, city, state, birthDateFormated, registrationDateFormated, positiveRatings, negativeRatings, blocked, admin);
+      console.log(response);
+      alert("Usuário cadastrado com sucesso!");
+      navigate("/login");  
+    }catch(error){
+      setError("Error ao cadastrar usuário!");
+    }
+  };
 
   return (
     <>
@@ -24,24 +52,26 @@ const Cadastro = () => {
       </div>
       <section className="main-register">
         <div className="container-form-register">
-          <form>
+          <form onSubmit={handleSubmit}>
             <TextInput inputValue={email} setInputValue={setEmail} label={"Email:"} htmlFor="email" type="email"/>
             <TextInput inputValue={password} setInputValue={setPassword} label={"Senha:"} htmlFor="password" type="password"/>
-            <TextInput inputValue={nome} setInputValue={setNome} label={"Nome:"} htmlFor="nome" type="text"/>
-            <TextInput inputValue={endereco} setInputValue={setEndereco} label={"Endereço:"} htmlFor="endereco" type="text"/>
+            <TextInput inputValue={name} setInputValue={setName} label={"Nome:"} htmlFor="nome" type="text"/>
+            <TextInput inputValue={adress} setInputValue={setAdress} label={"Endereço:"} htmlFor="endereco" type="text"/>
             <div className="container-input-register">
-              <TextInput inputValue={numero} setInputValue={setNumero} label={"Número:"} htmlFor="numero" type="number"/>
+              <TextInput inputValue={number} setInputValue={setNumber} label={"Número:"} htmlFor="numero" type="number"/>
               <div className="separador"/>
-              <TextInput inputValue={cep} setInputValue={setCep} label={"CEP:"} htmlFor="cep" type="text"/>
+              <TextInput inputValue={zipCode} setInputValue={setZipCode} label={"CEP:"} htmlFor="cep" type="text"/>
             </div>
-            <TextInput inputValue={bairro} setInputValue={setBairro} label={"Bairro:"} htmlFor="bairro" type="text"/>
+            <TextInput inputValue={neighborhood} setInputValue={setNeighborhood} label={"Bairro:"} htmlFor="bairro" type="text"/>
 
             <div className="container-input-register">
-              <TextInput inputValue={cidade} setInputValue={setCidade} label={"Cidade:"} htmlFor="cidade" type="text"/>
+              <TextInput inputValue={city} setInputValue={setCity} label={"Cidade:"} htmlFor="cidade" type="text"/>
               <div className="separador"/>
-              <TextInput inputValue={estado} setInputValue={setEstado} label={"Estado:"} htmlFor="estado" type="text"/>
+              <TextInput inputValue={state} setInputValue={setState} label={"Estado:"} htmlFor="estado" type="text"/>
             </div>
-            <TextInput inputValue={nascimento} setInputValue={setNascimento} label={"Data de nascimento:"} htmlFor="nascimento" type="date"/>
+            <TextInput inputValue={birthDate} setInputValue={setBirthDate} label={"Data de nascimento:"} htmlFor="nascimento" type="date"/>
+            {error && <p>{error}</p>}
+            <Button label={"Cadastrar"} type="submit"></Button>
           </form>
         </div>
         <div className="container-image-register">

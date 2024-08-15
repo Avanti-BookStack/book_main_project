@@ -17,8 +17,4 @@ Title.propTypes = {
   className: PropTypes.string, // Classes CSS adicionais, se necessário
 };
 
-Title.defaultProps = {
-  className: '',
-};
-
 export default Title;
