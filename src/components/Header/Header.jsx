@@ -2,8 +2,13 @@ import styles from './Header.module.css';
 import NewLogo from '../../assets/newLogo.svg'; // Adicione a referência para o novo logo
 import { CiSearch } from "react-icons/ci";
 import { Link } from 'react-router-dom';
+import { LoginContext } from '../../context/AuthContext';
+import { useContext } from 'react';
+import Button from '../Button/Button';
 
 const Header = () => {
+  const { name, logOut } = useContext(LoginContext);
+
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
@@ -26,9 +31,23 @@ const Header = () => {
         </div>
         <div>
           <ul className={styles.navList}>
-            <li className={styles.navItem}><Link to="/cadastre-se">Cadastre-se</Link></li>
-            <span className={styles.separator}>|</span>
-            <li className={styles.navItem}><Link to="/login">Entrar</Link></li>
+            {
+              name ?
+                <>
+                  <li  className={styles.navItem}>                
+                    <Link>{name}</Link> 
+                  </li>  
+                  <li className={styles.navItem}>
+                    <Button onClick={logOut} label="Sair"/>
+                  </li>
+                </>
+                :
+                <>
+                  <li className={styles.navItem}><Link to="/cadastre-se">Cadastre-se</Link></li>
+                    <span className={styles.separator}>|</span>
+                  <li className={styles.navItem}><Link to="/login">Entrar</Link></li>
+                </>
+            }
           </ul>
         </div>
       </nav>

@@ -1,16 +1,17 @@
 import Button from "../../components/Button/Button";
-// import Title from "../../components/Title/Title"
 import Header from "../../components/Header/Header";
 import TextInput from "../../components/TextInput/TextInput";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { loginUser } from "../../services/userApi";
 import "../Login/Login.css";
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../../context/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { login } = useContext(LoginContext);
 
   const navigate = useNavigate();
 
@@ -20,12 +21,7 @@ const Login = () => {
 
     try {
       const response = await loginUser(email, password);
-      const token = response.token;
-
-      // Armazenar o token no localStorage
-      localStorage.setItem("token", token);
-
-      console.log(token);
+      login(response);
       navigate("/");
     } catch (error) {
       setError(error.error);
