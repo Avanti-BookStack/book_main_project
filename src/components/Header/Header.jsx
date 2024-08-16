@@ -1,5 +1,5 @@
 import styles from './Header.module.css';
-import NewLogo from '../../assets/newLogo.svg'; // Adicione a referência para o novo logo
+import NewLogo from '../../assets/logo-plataform.webp'; // Adicione a referência para o novo logo
 import { CiSearch } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 import { LoginContext } from '../../context/AuthContext';

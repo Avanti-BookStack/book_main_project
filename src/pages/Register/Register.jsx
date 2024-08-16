@@ -8,6 +8,7 @@ import Button from "../../components/Button/Button";
 import getCurrentDataAndTime from "../../utils/dateUtil";
 import { useNavigate } from "react-router-dom";
 
+
 const Cadastro = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

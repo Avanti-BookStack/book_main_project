@@ -33,10 +33,9 @@ const Login = () => {
       <Header />
       <section className="main-login">
         <div className="container-titulo-login">
-          <h1>Bem-vindo!</h1>
-          <h1>Faça login com sua conta!</h1>
+          <h1>Bem-vindo(a)</h1>
+          <h2>Faça login com sua conta</h2>
         </div>
-        <h1>Login</h1>
         <form onSubmit={handleLogin} className="form-login">
           <TextInput
             inputValue={email}

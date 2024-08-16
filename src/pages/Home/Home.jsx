@@ -6,7 +6,7 @@ const Home = () => {
     <>
       <Header />
       <div className={styles.container}>
-        <h1>Bem-vindo à Página de Troca de Livros</h1>
+      <h1>Bem-vindo á nossa plataforma de troca de livros</h1>     
       </div>
     </>
   );

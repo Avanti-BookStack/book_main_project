@@ -4,8 +4,8 @@
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  background-color: #007bff;
-  color: #ffffff;
+  background-color: #0d4106;
+  color: hsl(0, 0%, 100%);
   font-weight: 700;
   border: none;
   border-radius: .25rem;

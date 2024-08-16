@@ -21,7 +21,7 @@
 }
 
 .logo {
-  width: 2.25rem; /* 36px */
+  width: 3.25rem; /* 36px */
   height: auto;
 }
 
@@ -57,13 +57,13 @@
 
 .separator {
   margin: 0 0.3125rem; /* 5px */
-  color: #007bff;
+  color: #1a4b49;
   font-weight: bold;
 }
 
 .navItem a {
   text-decoration: none;
-  color: #007bff;
+  color: #1a4b49;
   font-weight: bold;
 }
 
