@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext, useCallback } from 'react';
 import axios from 'axios';
 import styles from './BookList.module.css';
 import Header from '../../components/Header/Header';
 import Title from '../../components/Title/Title';
+import Button from '../../components/Button/Button';
+import { LoginContext } from '../../context/AuthContext'; 
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
@@ -11,29 +13,37 @@ const BookList = () => {
     author: '',
     category: ''
   });
-  // Regra para validar o token
+
+  const { userId, token, isLoading, loadUserData } = useContext(LoginContext);
+  const [editingBookId, setEditingBookId] = useState(null);
+  const [editedBook, setEditedBook] = useState({});
+
+  const fetchBooks = useCallback(async () => {
+    if (!token) return;
+    try {
+      const response = await axios.get('http://localhost:3000/books', {
+        params: filters,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setBooks(response.data);
+    } catch (error) {
+      console.error('Erro ao buscar livros:', error);
+    }
+  }, [filters, token]);
+
   useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        
-        const response = await axios.get('http://localhost:3000/books', {
-          params: filters,
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
-        setBooks(response.data);
-      } catch (error) {
-        console.error('Erro ao buscar livros:', error);
-      }
-    };
+    if (!isLoading) {
+      fetchBooks();
+    }
+  }, [fetchBooks, isLoading]);
 
-    fetchBooks();
-  }, [filters]);
+  useEffect(() => {
+    loadUserData();
+  }, [loadUserData]);
 
-  // Filtragem com lógica de toLowerCase
-  const filteredBooks = books.filter(book =>
+  const filteredBooks = books.filter((book) =>
     book.title.toLowerCase().includes(filters.title.toLowerCase()) &&
     book.author.toLowerCase().includes(filters.author.toLowerCase()) &&
     book.category.toLowerCase().includes(filters.category.toLowerCase())
@@ -45,6 +55,37 @@ const BookList = () => {
       [filterName]: value,
     }));
   };
+
+  const handleEditBook = (book) => {
+    setEditingBookId(book.book_id);
+    setEditedBook(book);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedBook((prevBook) => ({
+      ...prevBook,
+      [name]: value,
+    }));
+  };
+
+  const handleSaveChanges = async () => {
+    try {
+      await axios.put(`http://localhost:3000/books/${editedBook.book_id}`, editedBook, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setEditingBookId(null);
+      fetchBooks();
+    } catch (error) {
+      console.error('Erro ao atualizar livro:', error);
+    }
+  };
+
+  if (isLoading) {
+    return <div>Carregando...</div>;
+  }
 
   return (
     <>
@@ -77,15 +118,56 @@ const BookList = () => {
         <div className={styles.bookList}>
           {filteredBooks.map((book) => (
             <div key={book.book_id} className={styles.bookItem}>
-              <Title level="3">{book.title}</Title>
-              <div>
-                <p className={styles.info}>
-                  Autor: <span className={styles.subInfor}>{book.author}</span>
-                </p>
-                <p className={styles.info}>
-                  Categoria: <span className={styles.subInfor}>{book.category}</span>
-                </p>
-              </div>
+              {editingBookId === book.book_id ? (
+                <>
+                  <input 
+                    type="text"
+                    name="title"
+                    value={editedBook.title}
+                    onChange={handleInputChange}
+                    className={styles.input}
+                  />
+                  <input 
+                    type="text"
+                    name="author"
+                    value={editedBook.author}
+                    onChange={handleInputChange}
+                    className={styles.input}
+                  />
+                  <input 
+                    type="text"
+                    name="category"
+                    value={editedBook.category}
+                    onChange={handleInputChange}
+                    className={styles.input}
+                  />
+                  <textarea
+                    name="description"
+                    value={editedBook.description}
+                    onChange={handleInputChange}
+                    className={styles.input}
+                  />
+                  <Button label="Salvar" onClick={handleSaveChanges} />
+                </>
+              ) : (
+                <>
+                  <Title level="3">{book.title}</Title>
+                  <div>
+                    <p className={styles.info}>
+                      Autor: <span className={styles.subInfor}>{book.author}</span>
+                    </p>
+                    <p className={styles.info}>
+                      Categoria: <span className={styles.subInfor}>{book.category}</span>
+                    </p>
+                    <p className={styles.info}>
+                      Descrição: <span className={styles.subInfor}>{book.description}</span>
+                    </p>
+                    {userId && userId === book.user_id.toString() && (
+                      <Button label="Modificar" onClick={() => handleEditBook(book)} />
+                    )}
+                  </div>
+                </>
+              )}
             </div>
           ))}
         </div>

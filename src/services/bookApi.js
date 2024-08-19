@@ -16,11 +16,15 @@ export const getBooksByFilters = async (filters) => {
 
 */
 
-/* Rota PUT para atualizar um livro existente
-
-  Código aqui!
-
-*/
+/* Rota PUT para atualizar um livro existente */
+export const updateBook = async (bookId, updatedData) => {
+  const response = await api.put(`/books/${bookId}`, updatedData, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  });
+  return response.data;
+};
 
 /* Rota DELETE para remover um livro
 
