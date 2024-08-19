@@ -55,8 +55,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
+  display: box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
+  box-orient: vertical;
 }
 
 .bookItem button {
