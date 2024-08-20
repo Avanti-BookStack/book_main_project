@@ -22,6 +22,7 @@ const Header = () => {
           <img src={NewLogo} alt="New Logo" className={styles.logo} />
           <ul className={styles.navList}>
             <li className={`${styles.navItem} ${styles.navItemCenter}`}>
+            < HEAD
               <Link to="/">Home</Link>
             </li>
             <li className={`${styles.navItem} ${styles.navItemCenter}`}>
