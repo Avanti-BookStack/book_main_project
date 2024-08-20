@@ -22,7 +22,6 @@ const Header = () => {
           <img src={NewLogo} alt="New Logo" className={styles.logo} />
           <ul className={styles.navList}>
             <li className={`${styles.navItem} ${styles.navItemCenter}`}>
-            < HEAD
               <Link to="/">Home</Link>
             </li>
             <li className={`${styles.navItem} ${styles.navItemCenter}`}>
@@ -38,23 +37,22 @@ const Header = () => {
         </div>
         <div>
           <ul className={styles.navList}>
-            {
-              name ?
-                <>
-                  <li className={styles.navItem}>                
-                    <Link>{name}</Link> 
-                  </li>  
-                  <li className={styles.navItem}>
-                    <Button onClick={handleLogout} label="Sair"/>
-                  </li>
-                </>
-                :
-                <>
-                  {/* <li className={styles.navItem}><Link to="/cadastre-se">Cadastre-se</Link></li>
-                  <span className={styles.separator}>|</span> */}
-                  <li className={styles.navItem}><Link to="/login">Entrar</Link></li>
-                </>
-            }
+            {name ? (
+              <>
+                <li className={styles.navItem}>
+                  <span>{name}</span> 
+                </li>  
+                <li className={styles.navItem}>
+                  <Button onClick={handleLogout} label="Sair"/>
+                </li>
+              </>
+            ) : (
+              <>
+                {/* <li className={styles.navItem}><Link to="/cadastre-se">Cadastre-se</Link></li>
+                <span className={styles.separator}>|</span> */}
+                <li className={styles.navItem}><Link to="/login">Entrar</Link></li>
+              </>
+            )}
           </ul>
         </div>
       </nav>
