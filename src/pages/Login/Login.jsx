@@ -31,28 +31,40 @@ const Login = () => {
   return (
     <>
       <Header />
-      <section className="main-login">
-        <div className="container-titulo-login">
-          <h1>Bem-vindo(a)</h1>
-          <h2>Faça login com sua conta</h2>
+      <div className="content">
+        <div className="form-container">
+          <h1>Trocar seus livros antigos por novos nunca esteve tão fácil.</h1>
+          <p>Seja bem-vindo! Faça seu login aqui.</p>
+          <form onSubmit={handleLogin} className="form-login">
+            <TextInput
+              inputValue={email}
+              setInputValue={setEmail}
+              type="email"
+              label="Digite seu e-mail:"
+            />
+            <TextInput
+              inputValue={password}
+              setInputValue={setPassword}
+              type="password"
+              label="Digite sua senha:"
+            />
+            <div className="options">
+              <label>
+                <input type="checkbox" /> Lembrar minha senha
+              </label>
+              <a href="#">Esqueci minha senha</a>
+            </div>
+            <div className="buttons">
+              <Button type="submit" label="Entrar" />
+              <Button type="button" label="Cadastrar-me" />
+            </div>
+            {error && <p className="error">{error}</p>}
+          </form>
         </div>
-        <form onSubmit={handleLogin} className="form-login">
-          <TextInput
-            inputValue={email}
-            setInputValue={setEmail}
-            type="email"
-            label="Email"
-          />
-          <TextInput
-            inputValue={password}
-            setInputValue={setPassword}
-            type="password"
-            label="Senha"
-          />
-          <Button type="submit" label="Entrar" />
-          {error && <p className="error">{error}</p>}
-        </form>
-      </section>
+        <div className="image-container">
+          <img src="src/assets/imagem-cadastro.png" alt="Imagem de troca de livros" />
+        </div>
+      </div>
     </>
   );
 };

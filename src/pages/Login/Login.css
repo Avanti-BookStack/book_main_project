@@ -1,22 +1,92 @@
-.main-login {
-  width: 30rem;
-  margin:  auto;
-  padding: 10rem 0;
-  color: #073f21;
-
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #1E2E38;
+  color: white;
 }
 
-.container-titulo-login {
-  text-align: center;
-  width:100%
-  
+.header {
+  padding: 20px;
+  text-align: right;
 }
 
-.form-login {
-  width: auto;
-  color: #373737;
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+}
+
+.form-container {
+  max-width: 500px;
+}
+
+.form-container h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.form-container p {
+  margin-bottom: 20px;
+}
+
+.form-login input[type="email"],
+.form-login input[type="password"] {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+form input[type="email"] {
+  color: #007BFF;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.options label {
+  display: flex;
+  align-items: center;
+}
+
+.options input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
 }
 
 .error {
-  color: rgb(255, 29, 29);
+  color: red;
+  margin-top: 10px;
+}
+
+.image-container img {
+  max-width: 100%;
+  border-radius: 10px;
 }

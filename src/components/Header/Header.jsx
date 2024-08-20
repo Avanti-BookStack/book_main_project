@@ -43,9 +43,9 @@ const Header = () => {
                 </>
                 :
                 <>
-                  <li className={styles.navItem}><Link to="/cadastre-se">Cadastre-se</Link></li>
-                    <span className={styles.separator}>|</span>
                   <li className={styles.navItem}><Link to="/login">Entrar</Link></li>
+                  {/* <li className={styles.navItem}><Link to="/cadastre-se">Cadastre-se</Link></li> */}
+                  <span className={styles.separator}>|</span>
                 </>
             }
           </ul>
