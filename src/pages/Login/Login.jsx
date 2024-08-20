@@ -34,19 +34,19 @@ const Login = () => {
       <div className="content">
         <div className="form-container">
           <h1>Trocar seus livros antigos por novos nunca esteve tão fácil.</h1>
-          <p>Seja bem-vindo! Faça seu login aqui.</p>
+          {/* <h2>Faça login com sua conta</h2> */}
           <form onSubmit={handleLogin} className="form-login">
             <TextInput
               inputValue={email}
               setInputValue={setEmail}
               type="email"
-              label="Digite seu e-mail:"
+              label="Email"
             />
             <TextInput
               inputValue={password}
               setInputValue={setPassword}
               type="password"
-              label="Digite sua senha:"
+              label="Senha"
             />
             <div className="options">
               <label>

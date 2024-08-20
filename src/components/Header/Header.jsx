@@ -1,13 +1,19 @@
 import styles from './Header.module.css';
-import NewLogo from '../../assets/logo-plataform.webp'; // Adicione a referência para o novo logo
+import NewLogo from '../../assets/logo-plataform.webp';
 import { CiSearch } from "react-icons/ci";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LoginContext } from '../../context/AuthContext';
 import { useContext } from 'react';
 import Button from '../Button/Button';
 
 const Header = () => {
   const { name, logOut } = useContext(LoginContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logOut();
+    navigate('/login');
+  };
 
   return (
     <header className={styles.header}>
@@ -16,16 +22,16 @@ const Header = () => {
           <img src={NewLogo} alt="New Logo" className={styles.logo} />
           <ul className={styles.navList}>
             <li className={`${styles.navItem} ${styles.navItemCenter}`}>
-              <Link to="/">Como Funciona</Link> {/* Redireciona para a página inicial */}
+              <Link to="/">Home</Link>
             </li>
             <li className={`${styles.navItem} ${styles.navItemCenter}`}>
-              <Link to="/buscar-livros">Livros</Link> {/* Link correto para Livros */}
+              <Link to="/buscar-livros">Loja de livros</Link>
             </li>
             <li className={`${styles.navItem} ${styles.navItemCenter}`}>
-              <Link to="/informacoes">Informações</Link> {/* Este link deve apontar para a rota correta */}
+              <Link to="/informacoes">Sobre a plataforma</Link>
             </li>
             <li className={`${styles.navItem} ${styles.navItemCenter}`}>
-              <Link to="/buscar-livros"><CiSearch size="20" /></Link> {/* Link para buscar livros */}
+              <Link to="/buscar-livros"><CiSearch size="20" /></Link>
             </li>
           </ul>
         </div>
@@ -34,18 +40,18 @@ const Header = () => {
             {
               name ?
                 <>
-                  <li  className={styles.navItem}>                
+                  <li className={styles.navItem}>                
                     <Link>{name}</Link> 
                   </li>  
                   <li className={styles.navItem}>
-                    <Button onClick={logOut} label="Sair"/>
+                    <Button onClick={handleLogout} label="Sair"/>
                   </li>
                 </>
                 :
                 <>
+                  {/* <li className={styles.navItem}><Link to="/cadastre-se">Cadastre-se</Link></li>
+                  <span className={styles.separator}>|</span> */}
                   <li className={styles.navItem}><Link to="/login">Entrar</Link></li>
-                  {/* <li className={styles.navItem}><Link to="/cadastre-se">Cadastre-se</Link></li> */}
-                  <span className={styles.separator}>|</span>
                 </>
             }
           </ul>
