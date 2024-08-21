@@ -84,6 +84,9 @@ const BookList = () => {
   };
 
   const handleDeleteBook = async (id) => {
+    const confirmDelete = window.confirm("Você tem certeza que deseja deletar este livro?");
+  
+    if (!confirmDelete) return;
     try {
       const token = localStorage.getItem('token');
       await axios.delete(`http://localhost:3000/books/${id}`, {
