@@ -19,7 +19,9 @@ const Header = () => {
     <header className={styles.header}>
       <nav className={styles.nav}>
         <div className={styles.section}>
-          <img src={NewLogo} alt="New Logo" className={styles.logo} />
+          <Link to="/">
+            <img src={NewLogo} alt="New Logo" className={styles.logo} />
+          </Link>
           <ul className={styles.navList}>
             <li className={`${styles.navItem} ${styles.navItemCenter}`}>
               <Link to="/">Home</Link>
@@ -48,8 +50,6 @@ const Header = () => {
               </>
             ) : (
               <>
-                {/* <li className={styles.navItem}><Link to="/cadastre-se">Cadastre-se</Link></li>
-                <span className={styles.separator}>|</span> */}
                 <li className={styles.navItem}><Link to="/login">Entrar</Link></li>
               </>
             )}

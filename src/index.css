@@ -7,12 +7,12 @@
 }
 
 body {
-  background-color: rgb(14, 35, 1);
-  background-size: cover; /* Opcional: Faz com que a imagem cubra todo o fundo */
-  background-position:center; /* Opcional: Centraliza a imagem */
-  background-repeat: no-repeat; /* Opcional: Impede a repetição da imagem */
-  margin: 0; /* Remove a margem padrão do body */
-  height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+  background-color: #0e2301;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  height: 100vh;
 }
 
 * {
@@ -21,3 +21,64 @@ body {
   padding: 0;
 }
 
+.testimonials-section {
+  padding: 50px 0;
+  background-color: #0e2301;
+  text-align: center;
+}
+
+.testimonials-carousel {
+  display: flex;
+  justify-content: center; /* Centraliza os cards horizontalmente */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0 40px;
+}
+
+.testimonial-item {
+  flex: 0 0 auto;
+  width: 30%;
+  margin-right: 20px;
+  scroll-snap-align: start;
+  background-color: #7fc798;
+  margin-top: 3%;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.testimonial-content {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.testimonial-author {
+  font-style: italic;
+  margin-top: 10px;
+}
+
+.testimonials-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-prev, .carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+}
+
+.carousel-prev {
+  left: 10px;
+}
+
+.carousel-next {
+  right: 10px;
+}

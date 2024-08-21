@@ -1,11 +1,9 @@
 .header {
-  background-color: #f8f9fa;
-  color: #004400;
-  padding: 1.25rem 0; /* 20px */
+  background-color: #ffffff;
+  color: #333333;
+  padding: 1rem 0;
   border-bottom: 1px solid #e0e0e0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .nav {
@@ -13,17 +11,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 2rem;
 }
 
 .section {
-  /* margin-left: 1.25rem; 20px */
   display: flex;
-  padding: 0 1.25rem;
+  align-items: center;
 }
 
 .logo {
-  width: 3.25rem; /* 36px */
+  width: 3.25rem;
   height: auto;
+  margin-right: 2rem;
 }
 
 .navList {
@@ -33,50 +32,64 @@
   align-items: center;
   margin: 0;
   padding: 0;
-  width: 100%;
 }
 
 .navItem {
-  margin: 0 0.9375rem; /* 15px */
+  margin: 0 0.9375rem;
 }
 
 .navRight {
   display: flex;
   align-items: center;
-  margin: 0 0.9375rem;
 }
 
 .navItemCenter {
-  flex-grow: 1;
   text-align: center;
-  margin: 0 0.9375rem; /* 15px */
-}
-
-.navRight .navItem {
-  margin: 0 0.3125rem; /* 5px */
-}
-
-.separator {
-  margin: 0 0.3125rem; /* 5px */
-  color: #1a4b49;
-  font-weight: bold;
+  margin: 0 0.9375rem;
 }
 
 .navItem a {
   text-decoration: none;
-  color: #1a4b49;
-  font-weight: bold;
+  color: #333333;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 .navItem a:hover {
-  color: #0056b3;
+  color: #007bff;
 }
 
-.centered {
-  text-align: center;
+.searchForm {
+  display: flex;
+  margin-right: 1rem;
+}
+
+.searchInput {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+  font-size: 0.9rem;
+}
+
+.searchButton {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-left: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+  transition: background-color 0.3s ease;
+}
+
+.searchButton:hover {
+  background-color: #e0e0e0;
+}
+
+.separator {
+  display: none;
 }
 
 .header + .container {
-  margin-top: 3.125rem; /* 50px */
+  margin-top: 3.125rem;
   text-align: center;
 }
