@@ -83,6 +83,23 @@ const BookList = () => {
     }
   };
 
+  const handleDeleteBook = async (id) => {
+    try {
+      const token = localStorage.getItem('token');
+      await axios.delete(`http://localhost:3000/books/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      // Remove o livro deletado da lista sem recarregar todos os livros
+      setBooks(books.filter(book => book.book_id !== id));
+    } catch (error) {
+      console.error('Erro ao deletar livro:', error);
+    }
+  };
+
+
+
   if (isLoading) {
     return <div>Carregando...</div>;
   }
@@ -163,7 +180,10 @@ const BookList = () => {
                       Descrição: <span className={styles.subInfor}>{book.description}</span>
                     </p>
                     {userId && userId === book.user_id.toString() && (
+                      <>
                       <Button label="Modificar" onClick={() => handleEditBook(book)} />
+                      <Button className="delete-button" label="Deletar"onClick={() => handleDeleteBook(book.book_id)}/>  
+                      </>
                     )}
                   </div>
                 </>

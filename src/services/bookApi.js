@@ -26,8 +26,13 @@ export const updateBook = async (bookId, updatedData) => {
   return response.data;
 };
 
-/* Rota DELETE para remover um livro
-
-  Código aqui!
-
-*/
+/* Rota DELETE para remover um livro */
+export const deleteBook = async (id) => {
+  try {
+    const response = await api.delete(`/books/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao deletar o livro:', error);
+    throw error;
+  }
+};
