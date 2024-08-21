@@ -52,6 +52,7 @@
 
 .bookItem p {
   margin: 0.25rem 0;
+  color: #000000;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
