@@ -96,7 +96,10 @@ export const putUser = async (req, res) => {
     if (password) {
       hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
     }
-
+    
+    // Formata a data de nascimento recebida do front-end
+    const formattedBirthDate = `${birthDateInput}T00:00:00.000Z`;
+    
     const updatedUser = await prisma.users.update({
       where: { user_id: parseInt(user_id) },
       data: {
