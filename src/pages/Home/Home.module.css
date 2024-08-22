@@ -107,3 +107,46 @@
   transition: .5s;
   cursor: pointer;
 }
+
+.testimonials_section {
+  padding: 50px 0;
+  background-color: #0e2301;
+  text-align: center;
+}
+
+.testimonials_carousel {
+  display: flex;
+  justify-content: center; /* Centraliza os cards horizontalmente */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0 40px;
+}
+
+.testimonial_item {
+  flex: 0 0 auto;
+  width: 30%;
+  margin-right: 20px;
+  scroll-snap-align: start;
+  background-color: #7fc798;
+  margin-top: 3%;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.testimonial_content {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.testimonial_author {
+  font-style: italic;
+  margin-top: 10px;
+}
+
+.testimonials_carousel::-webkit-scrollbar {
+  display: none;
+}
