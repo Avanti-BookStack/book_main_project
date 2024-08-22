@@ -28,13 +28,16 @@ const Login = () => {
     }
   };
 
+  const handleSignUpRedirect = () => {
+    navigate('/cadastre-se'); // Ajuste para a rota correta
+  };
+
   return (
     <>
       <Header />
       <div className="content">
         <div className="form-container">
           <h1>Trocar seus livros antigos por novos nunca esteve tão fácil.</h1>
-          {/* <h2>Faça login com sua conta</h2> */}
           <form onSubmit={handleLogin} className="form-login">
             <TextInput
               inputValue={email}
@@ -56,7 +59,7 @@ const Login = () => {
             </div>
             <div className="buttons">
               <Button type="submit" label="Entrar" />
-              <Button type="button" label="Cadastrar-me" />
+              <Button type="button" label="Cadastrar-me" onClick={handleSignUpRedirect} />
             </div>
             {error && <p className="error">{error}</p>}
           </form>
