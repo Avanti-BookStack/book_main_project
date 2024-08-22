@@ -58,6 +58,30 @@ const Home = () => {
             </div>
           </div>
         </section>
+
+        <section class="testimonials-section">
+          <h2>O que nossos clientes dizem ao usar nossa plataforma! </h2>
+          <div class="testimonials-carousel">
+            <div class="testimonial-item">
+              <div class="testimonial-content">
+                <p>"Adoro a plataforma de troca de livros! É uma ótima forma de obter novos livros sem gastar muito dinheiro."</p>
+                <p class="testimonial-author">- Maria, 32 anos</p>
+              </div>
+            </div>
+            <div class="testimonial-item">
+              <div class="testimonial-content">
+                <p>"Eu troco meus livros antigos por outros novos há anos e sempre encontro ótimas opções. Recomendo a todos os amantes de leitura!"</p>
+                <p class="testimonial-author">- João, 45 anos</p>
+              </div>
+            </div>
+            <div class="testimonial-item">
+              <div class="testimonial-content">
+                <p>"Antes de conhecer essa plataforma, eu tinha uma pilha de livros que não lia mais. Agora consigo trocá-los por livros que realmente me interessam."</p>
+                <p class="testimonial-author">- Ana, 28 anos</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );
