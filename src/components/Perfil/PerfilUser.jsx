@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { deleteUser, getAllUsuario, updateUser } from '../services/Users';
+import { deleteUser, getAllUsuario, updateUser } from '../services/Users';/*Implementei um Get pra listar os dados de user cadastrados
+no banco*/
 import './Perfil.css';
 
 const PerfilUser = () => {
@@ -41,7 +42,7 @@ const PerfilUser = () => {
     setEditUser(user.user_id);
     setFormData({
       email: user.email,
-      password: '', // Inicia com senha vazia
+      password: '', 
       zip_code: user.zip_code,
       address: user.address,
       number: parseInt(user.number, 10),
@@ -87,12 +88,10 @@ const PerfilUser = () => {
   const handleUpdate = async () => {
     try {
       const response = await updateUser(editUser, formData);
-      console.log('Resposta do back-end:', response);
       setEditUser(null);
       getUsuarios();
       alert('Dados atualizados com sucesso!');
     } catch (error) {
-      console.error('Erro ao atualizar usuário:', error);
       alert('Ocorreu um erro ao tentar atualizar o usuário. Por favor, tente novamente.');
     }
   };
