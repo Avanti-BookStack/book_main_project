@@ -1,0 +1,87 @@
+body{
+  background-color: #004400;
+  font-family: Arial, Helvetica, sans-serif;
+}
+h1 {
+  text-align: center; /* Centraliza o texto horizontalmente */
+  margin-bottom: 20px;
+  font-size: 2rem; /* Tamanho da fonte */
+  color: white; /* Cor do texto */
+}
+.user-card {
+  max-width: 600px; /* Define a largura máxima da div */
+  margin: 20px auto; /* Centraliza a div na página */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-card label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block; /* Força cada label a ficar em uma linha separada */
+}
+
+.user-card h4 {
+  margin: 5px 0 15px; /* Margem entre o h4 e os elementos adjacentes */
+  font-size: 1.1em;
+}
+
+/* Adicionando um layout de duas colunas */
+@media (min-width: 768px) {
+  .user-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .user-card label,
+  .user-card h4 {
+    margin: 0;
+  }
+
+  #btn01, #btn02{
+    background-color: red;
+    color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  #btn01{
+    background-color: green;
+    color: white;
+ 
+  }
+
+  #btn02{
+    background-color: red;
+    color: white;
+
+  }
+}
+
+.user-card .button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.user-card .btn-save {
+  background-color: green;
+  color: white;
+  border: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.user-card .btn-cancel {
+  background-color: red;
+  color: white;
+  border: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
