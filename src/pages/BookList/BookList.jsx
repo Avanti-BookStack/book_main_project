@@ -187,7 +187,7 @@ const BookList = () => {
                     {userId && userId === book.user_id.toString() && (
                       <>
                       <Button label="Modificar" onClick={() => handleEditBook(book)} />
-                      <Button className="delete-button" label="Deletar"onClick={() => handleDeleteBook(book.book_id)}/>  
+                      <Button className="delete-button" label="Deletar"onClick={() => handleDeleteBook(book.book_id)} additionalClass="red"/>  
                       </>
                     )}
                   </div>

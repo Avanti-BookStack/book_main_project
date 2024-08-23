@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
 import "../Button/Button.css"
 
-const Button = ({ label, type, onClick }) => {
+const Button = ({ label, type, onClick, additionalClass }) => {
   return (
     <button 
-    className='button'
+    className={`button ${additionalClass ? additionalClass : ''}`}
     type={type}
     onClick={onClick}
     >
@@ -16,7 +16,8 @@ const Button = ({ label, type, onClick }) => {
 Button.propTypes = {
   label: PropTypes.string,
   type: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  additionalClass: PropTypes.string
 }
 
 export default Button

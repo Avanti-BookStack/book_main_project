@@ -14,3 +14,11 @@
 .button:hover {
   cursor: pointer;
 }
+
+.button.red {
+  background-color: #8B0000; 
+}
+
+.button.red:hover {
+  background-color: #A52A2A; 
+}
