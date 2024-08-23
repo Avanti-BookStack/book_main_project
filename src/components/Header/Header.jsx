@@ -3,12 +3,19 @@ import NewLogo from '../../assets/logo-plataform.webp';
 import { CiSearch } from "react-icons/ci";
 import { Link, useNavigate } from 'react-router-dom';
 import { LoginContext } from '../../context/AuthContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import Button from '../Button/Button';
+import { FiPlusCircle } from "react-icons/fi";
 
 const Header = () => {
   const { name, logOut } = useContext(LoginContext);
   const navigate = useNavigate();
+
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const toggleDropdown = () => {
+    setShowDropdown(!showDropdown);
+  };
 
   const handleLogout = () => {
     logOut();
@@ -42,7 +49,18 @@ const Header = () => {
             {name ? (
               <>
                 <li className={styles.navItem}>
-                  <span>{name}</span> 
+                  <span>{name}</span>
+                  <FiPlusCircle
+                      size="20"
+                      className={styles.icon}
+                      onClick={toggleDropdown}
+                    />
+                    {showDropdown && (
+                      <div className={styles.dropdown}>
+                        <Link to="/cadastrar-livro">Cadastrar Livro</Link>
+                        <Link to="/meu-perfil">Meu perfil</Link>
+                      </div>
+                    )} 
                 </li>  
                 <li className={styles.navItem}>
                   <Button onClick={handleLogout} label="Sair"/>

@@ -10,11 +10,16 @@ export const getBooksByFilters = async (filters) => {
   return response.data;
 };
 
-/* Rota POST para criar um novo livro
+/* Rota POST para criar um novo livro*/
+export const createBook = async (newBook) => {
+  const response = await api.post('/books', newBook, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  });
+  return response.data;
+};
 
-  Código aqui!
-
-*/
 
 /* Rota PUT para atualizar um livro existente */
 export const updateBook = async (bookId, updatedData) => {
