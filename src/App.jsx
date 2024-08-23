@@ -6,6 +6,7 @@ import BookList from './pages/BookList/BookList'; // Novo import
 import Footer from './components/Footer/Footer';
 import BookRegister from './pages/BookRegister/BookRegister';
 import PerfilUser from './pages/Perfil/PerfilUser'
+import About from './pages/About/About'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/buscar-livros" element={<BookList />} />
         <Route path="/cadastrar-livro" element={<BookRegister />} /> 
         <Route path="/perfil" element={<PerfilUser />} /> 
+        <Route path="/informacoes" element={<About />} />
       </Routes>
       <Footer/>
     </BrowserRouter>
