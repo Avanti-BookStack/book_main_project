@@ -1,7 +1,6 @@
 body{
   background-color: #004400;
   font-family: Arial, Helvetica, sans-serif;
-  color: black;
 }
 h1 {
   text-align: center; 
@@ -9,7 +8,6 @@ h1 {
   font-size: 2rem; 
   color: white;
 }
-
 
 .user-card {
   max-width: 600px; 
@@ -19,20 +17,21 @@ h1 {
   border-radius: 10px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  color: black; /*Adicionei a cor da letra aqui. Está dando conflito*/
 }
 
 .user-card label {
   font-weight: bold;
   margin-top: 10px;
-  display: block; 
+  display: block; /* Força cada label a ficar em uma linha separada */
 }
 
 .user-card h4 {
-  margin: 5px 0 15px; 
+  margin: 5px 0 15px; /* Margem entre o h4 e os elementos adjacentes */
   font-size: 1.1em;
 }
 
-
+/* Adicionando um layout de duas colunas */
 @media (min-width: 768px) {
   .user-card {
     display: grid;
