@@ -5,6 +5,7 @@ import Cadastro from './pages/Register/Register';
 import BookList from './pages/BookList/BookList'; // Novo import
 import Footer from './components/Footer/Footer';
 import BookRegister from './pages/BookRegister/BookRegister';
+import PerfilUser from './pages/Perfil/PerfilUser'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/cadastre-se" element={<Cadastro />} />
         <Route path="/buscar-livros" element={<BookList />} />
         <Route path="/cadastrar-livro" element={<BookRegister />} /> 
+        <Route path="/perfil" element={<PerfilUser />} /> 
       </Routes>
       <Footer/>
     </BrowserRouter>
