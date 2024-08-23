@@ -56,3 +56,38 @@ export const registerUser = async (email, password, name, zip_code, address, num
 	"blocked": false,
 	"admin": false
 */
+
+export const getAllUsuario = async () => {
+  try {
+    const response = await api.get("/usuarios");
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao obter usuários:', error);
+    throw error;
+  }
+};
+
+
+export const deleteUser = async (id) => {
+  try {
+    const url = `/usuarios/${id}`;
+    console.log('URL de exclusão:', url);
+    const response = await api.delete(url); // Use a instância `users` aqui
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao deletar usuário:', error);
+    throw error;
+  }
+};
+
+
+export const updateUser = async (id, userData) => {
+  try {
+    const url = `/usuarios/${id}`;
+    const response = await api.put(url, userData); // Passa os dados do usuário aqui
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao atualizar usuário:', error);
+    throw error;
+  }
+};
