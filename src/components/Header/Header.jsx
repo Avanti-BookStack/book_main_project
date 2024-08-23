@@ -69,6 +69,7 @@ const Header = () => {
             ) : (
               <>
                 <li className={styles.navItem}><Link to="/login">Entrar</Link></li>
+                <li className={styles.navItem}><Link to="/perfil">Meu Perfil</Link></li>
               </>
             )}
           </ul>
