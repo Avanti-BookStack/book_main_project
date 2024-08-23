@@ -1,0 +1,113 @@
+.footer {
+  height: auto;
+  width: 100%;
+  background-color: #f5f5f5;
+  color: #333333;
+  padding: 2rem 0%;
+}
+
+.componentMain {
+  display: flex;
+  padding-bottom: 1rem;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.logoComponent {
+  width: auto;
+}
+
+.imageComponent {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.imageComponent img {
+  width:  5rem; 
+}
+
+.main_title {
+  width: 50%;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.sub_title {
+  font-size: 1rem;
+  color: #666;
+  margin-top: .4rem;
+}
+
+.text {
+  color: #666;
+  font-size: .9rem;
+  margin-top: .4rem;
+}
+
+.infoComponent {
+  display: flex;
+  gap: 5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.subInfoComponent {
+  display: flex;
+  flex-direction: column;
+  align-items: space-evenly;
+  gap: .7rem;
+}
+
+.titleInfo {
+  margin-top: 1.5rem;
+}
+
+
+.updatesComponent {
+  margin-top: 1.6rem;
+}
+
+.subUpadatesComponent h5 {
+  margin-bottom: 1rem;
+}
+
+.updateButton {
+  width: 8rem;
+}
+
+.componentSocialMedia {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.componentSocialMedia:hover {
+  cursor: pointer;
+}
+
+.socialIco:hover {
+  cursor: pointer;
+}
+
+.copyrightComponent {
+  padding: 0 4.5rem;
+}
+
+.copyright {
+  color: #666;
+  font-size: .8rem;
+}
+
+@media (max-width: 1000px) {
+  .footer {
+    padding: 1rem;
+  }
+
+  .copyrightComponent {
+    padding: 0 1rem;
+  }
+}

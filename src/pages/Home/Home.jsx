@@ -4,6 +4,7 @@ import Header from '../../components/Header/Header';
 import Planet from '../../assets/planet-earth.svg';
 import Comunity from '../../assets/comunidade.svg';
 import BookAndPlane from '../../assets/livro_com_aviao.svg';
+// import Footer from '../../components/Footer/Footer';
 
 
 const Home = () => {

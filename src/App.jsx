@@ -3,6 +3,7 @@ import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Cadastro from './pages/Register/Register';
 import BookList from './pages/BookList/BookList'; // Novo import
+import Footer from './components/Footer/Footer';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/cadastre-se" element={<Cadastro />} />
         <Route path="/buscar-livros" element={<BookList />} />
       </Routes>
+      <Footer/>
     </BrowserRouter>
   );
 };

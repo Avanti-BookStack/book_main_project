@@ -5,6 +5,7 @@ import Header from '../../components/Header/Header';
 import Title from '../../components/Title/Title';
 import Button from '../../components/Button/Button';
 import { LoginContext } from '../../context/AuthContext'; 
+import { Link } from 'react-router-dom';
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
@@ -100,7 +101,7 @@ const BookList = () => {
       console.error('Erro ao deletar livro:', error);
     }
   };
-
+  console.log(books)
 
 
   if (isLoading) {
@@ -110,7 +111,8 @@ const BookList = () => {
   return (
     <>
       <Header />
-      <div className={styles.container}>
+      {books.length ? 
+        <div className={styles.container}>
         <div className={styles.container_inputs}>
           <input 
             type="text"
@@ -195,6 +197,11 @@ const BookList = () => {
           ))}
         </div>
       </div>
+      :
+      <div className={styles.containerNoBooks}>
+        <h1>Faça <Link to="/login">login</Link> para ter acesso aos livros!</h1>
+      </div>
+      } 
     </>
   );
 };
