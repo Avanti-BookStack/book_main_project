@@ -8,6 +8,7 @@ import Header from '../../components/Header/Header';
 import BookCard from '../../components/BookCard/BookCard';
 import styles from './BookRegister.module.css';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const BookRegister = () => {
@@ -23,6 +24,7 @@ const BookRegister = () => {
   const [books, setBooks] = useState([]);
   
   const { userId } = useContext(LoginContext); 
+  const navigate = useNavigate();
 
   // Recuperar livros do localStorage ao carregar o componente
   useEffect(() => {
@@ -68,6 +70,7 @@ const BookRegister = () => {
 
       // Salvar livros atualizados no localStorage
       localStorage.setItem('books', JSON.stringify(updatedBooks));
+      navigate('/buscar-livros');
     } catch (error) {
       if (error.response && error.response.status === 403) {
         alert('Você não tem permissão para realizar esta ação. Faça login novamente.');

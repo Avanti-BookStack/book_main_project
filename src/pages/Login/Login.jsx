@@ -59,7 +59,8 @@ const Login = () => {
             </div>
             <div className="buttons">
               <Button type="submit" label="Entrar" />
-              <Button type="button" label="Cadastrar-me" onClick={handleSignUpRedirect} />
+              <div className="separetor-buttons"></div>
+              <Button type="button" label="Cadastrar-me" onClick={handleSignUpRedirect} />              
             </div>
             {error && <p className="error">{error}</p>}
           </form>

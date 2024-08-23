@@ -67,6 +67,10 @@ form input[type="email"] {
   margin-bottom: 20px;
 }
 
+.options a {
+  color: #f5f5f5;
+}
+
 .options label {
   display: flex;
   align-items: center;
@@ -79,6 +83,10 @@ form input[type="email"] {
 .buttons {
   display: flex;
   justify-content: space-between;
+}
+
+.separetor-buttons {
+  width: 6rem;
 }
 
 .error {
