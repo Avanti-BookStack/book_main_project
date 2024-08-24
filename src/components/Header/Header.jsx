@@ -58,7 +58,6 @@ const Header = () => {
                     {showDropdown && (
                       <div className={styles.dropdown}>
                         <Link to="/cadastrar-livro">Cadastrar Livro</Link>
-                        <Link to="/meu-perfil">Meu perfil</Link>
                       </div>
                     )} 
                 </li>  
