@@ -2,22 +2,24 @@ body{
   background-color: #004400;
   font-family: Arial, Helvetica, sans-serif;
 }
-h1 {
-  text-align: center; 
+
+#h1_do_perfil{
+  text-align: center; /* Centraliza o texto horizontalmente */
   margin-bottom: 20px;
-  font-size: 2rem; 
+  font-size: 2rem; /* Tamanho da fonte */
   color: white;
 }
 
+
 .user-card {
-  max-width: 600px; 
-  margin: 20px auto; 
+  max-width: 600px; /* Define a largura máxima da div */
+  margin: 20px auto; /* Centraliza a div na página */
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
   background-color: #f9f9f9;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  color: black; /*Adicionei a cor da letra aqui. Está dando conflito*/
+  color: black;
 }
 
 .user-card label {
