@@ -131,7 +131,7 @@ export const putUser = async (req, res) => {
 };
 
 // Função para deletar um usuário
-export const deleteUser = async (req, res) => {
+/*export const deleteUser = async (req, res) => {
   const { user_id, password } = req.body;
 
   if (!req.user) {
@@ -163,4 +163,19 @@ export const deleteUser = async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'Erro ao excluir usuário.' });
   }
-};
+};*/
+//Função para deleção de usuário sem uso de autenticação//
+export const deleteUser = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+      console.log('ID recebido:', id);
+      const usuarioDataBase = await prisma.users.delete({
+          where: { user_id: parseInt(id) }
+      });
+      res.status(204).send();
+  } catch (error) {
+      console.error('Erro ao deletar usuário:', error);
+      res.status(500).json({ error: 'Erro ao deletar usuário' });
+  }
+}
